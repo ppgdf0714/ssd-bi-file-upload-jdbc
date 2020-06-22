@@ -362,9 +362,9 @@ public class FileUploadService {
 	 */	
 	public void dataUpload(String filetype,Map<String,List<String>> excelData){
 		Connection myconn = dbutil.getConn();
+		try{
+		myconn.setAutoCommit(false);
 		throw new MyException("123");
-//		try{
-//		myconn.setAutoCommit(false);	
 //		for(Map.Entry<String, List<String>> tmpData : excelData.entrySet()) {				
 //				String tmpKey = tmpData.getKey();
 //				List<String> tmpValue = tmpData.getValue();
@@ -377,9 +377,10 @@ public class FileUploadService {
 //				System.out.println(sqlMap.get(UploadCommonConst.INSERT));
 //			}	
 //		myconn.commit();
-//		}catch (Exception e){
-//				myconn.rollback();
-//		}
+		}catch (Exception e){
+				//myconn.rollback();
+			throw new MyException("123");
+		}
 	}
 	
 	/**
