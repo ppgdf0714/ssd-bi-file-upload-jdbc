@@ -77,7 +77,7 @@ public class FileUploadController {
 				// TODO Auto-generated catch block
 				throw new MyException("333");
 			}
-			myconn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "test", "test");
+			myconn = DriverManager.getConnection("jdbc:postgresql://ssd-rds-postpresql.caunxszlefde.ap-northeast-1.rds.amazonaws.com:5432/ssdDatabase, "ssdmaster", "ssdpassword");
 		 
 		//Connection myconn = dbutil.getConn();
 		myconn.setAutoCommit(false);
