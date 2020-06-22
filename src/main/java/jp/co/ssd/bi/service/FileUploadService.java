@@ -376,12 +376,12 @@ public class FileUploadService {
 				try{
 					dbutil.queryUpdate(myconn, "delete from 案件振り返り_テスト");
 					dbutil.queryUpdate(myconn, "insert into 案件振り返り_テスト(課名) values(2)");	
+					dbutil.queryUpdate(myconn, sqlMap.get(UploadCommonConst.DELETE));
+					dbutil.queryUpdate(myconn, sqlMap.get(UploadCommonConst.INSERT));	
 				}
-				//dbutil.queryUpdate(myconn, sqlMap.get(UploadCommonConst.DELETE));}
 				catch (Exception e){
 					throw new MyException("666");
 				}
-//				dbutil.queryUpdate(myconn, sqlMap.get(UploadCommonConst.INSERT));	
 		}	
 		try{
 		myconn.commit();}
