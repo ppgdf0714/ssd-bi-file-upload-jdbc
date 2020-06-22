@@ -375,7 +375,7 @@ public class FileUploadService {
 				//テーブルを更新
 				try{
 				dbutil.queryUpdate(myconn, sqlMap.get(UploadCommonConst.DELETE));}
-				catch (Exception e){
+				catch (SQLException e){
 					throw new MyException(e.getMessage());
 				}
 //				dbutil.queryUpdate(myconn, sqlMap.get(UploadCommonConst.INSERT));	
