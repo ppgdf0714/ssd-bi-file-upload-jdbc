@@ -375,6 +375,7 @@ public class FileUploadService {
 			}	
 		myconn.commit();
 		}catch (Exception e){
+				throw new MyException("12345");
 				myconn.rollback();
 				throw new MyException(e.getMessage());
 		}
