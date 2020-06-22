@@ -375,9 +375,10 @@ public class FileUploadService {
 				dbutil.queryUpdate(myconn, sqlMap.get(UploadCommonConst.DELETE));
 				dbutil.queryUpdate(myconn, sqlMap.get(UploadCommonConst.INSERT));	
 			}
+			myconn.commit();
 		}catch (Exception e){
 			try {
-				myconn.commit();
+				myconn.rollback();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
