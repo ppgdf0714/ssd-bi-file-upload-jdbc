@@ -39,7 +39,7 @@ public class DBUtil {
         return connection;
     }
 	
-	public void queryUpdate(Connection conn, String sql) throws SQLException {
+	public void queryUpdate(Connection conn, String sql) throws Exception {
         PreparedStatement pStatement = null;
         pStatement = conn.prepareStatement(sql);
         pStatement.executeUpdate();
