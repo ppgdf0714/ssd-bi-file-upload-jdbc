@@ -364,22 +364,20 @@ public class FileUploadService {
 		Connection myconn = dbutil.getConn();
 		try{
 		myconn.setAutoCommit(false);
-		throw new MyException("123");
-//		for(Map.Entry<String, List<String>> tmpData : excelData.entrySet()) {				
-//				String tmpKey = tmpData.getKey();
-//				List<String> tmpValue = tmpData.getValue();
-//				//sql文生成
-//				Map <String,String> sqlMap = getsql(tmpKey,tmpValue);
-//				//テーブルを更新
+		for(Map.Entry<String, List<String>> tmpData : excelData.entrySet()) {				
+				String tmpKey = tmpData.getKey();
+				List<String> tmpValue = tmpData.getValue();
+				//sql文生成
+				Map <String,String> sqlMap = getsql(tmpKey,tmpValue);
+				//テーブルを更新
+				throw new MyException("123");
 //				dbutil.queryUpdate(myconn, sqlMap.get(UploadCommonConst.DELETE));
 //				dbutil.queryUpdate(myconn, sqlMap.get(UploadCommonConst.INSERT));	
-//				System.out.println(sqlMap.get(UploadCommonConst.DELETE));
-//				System.out.println(sqlMap.get(UploadCommonConst.INSERT));
-//			}	
-//		myconn.commit();
+		}	
+		myconn.commit();
 		}catch (Exception e){
 				//myconn.rollback();
-			throw new MyException("123");
+			throw new MyException("456");
 		}
 	}
 	
