@@ -56,19 +56,6 @@ public class FileUploadController {
 		Map<String,List<String>> excelData = fileUploadService.getExcelData(filetype,file,xmlData);
 		//テーブルを更新
 		fileUploadService.dataUpload(filetype,excelData);
-//		try {
-//		Connection myconn = dbutil.getConn();
-//		myconn.setAutoCommit(false);
-//		PreparedStatement pStatement = null;
-//	    pStatement = myconn.prepareStatement("delete from 案件振り返り_テスト");
-//	    pStatement.executeUpdate();
-//		myconn.commit();}
-//		//throw new MyException("444");}
-//		catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			throw new MyException("444");
-//		}
-   	return "OK";
+		return "ok";
     }
-
 }
