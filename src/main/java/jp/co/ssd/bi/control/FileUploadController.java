@@ -59,6 +59,7 @@ public class FileUploadController {
 //		}catch(Exception e) {
 //			throw new MyException(e.getMessage());
 //		}
+	    System.out.println("Hello, logs!");
 		throw new MyException("123");
 		//Connection myconn = null;
 //		try {
