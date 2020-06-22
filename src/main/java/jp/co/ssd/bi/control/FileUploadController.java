@@ -66,7 +66,7 @@ public class FileUploadController {
 	    pStatement.executeUpdate();
 		myconn.commit();}
 		catch(Exception e){
-			throw new MyException(e.getMessage());
+			throw new MyException("123");
 		}
     	return "OK";
     }
