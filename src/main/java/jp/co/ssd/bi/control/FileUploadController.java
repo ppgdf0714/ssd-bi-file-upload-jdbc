@@ -42,17 +42,17 @@ public class FileUploadController {
      * @throws Exception
      */
 	@RequestMapping("/importExcel")
-    public String importExcel(@RequestParam(value = "filetype",required = false) String filetype,MultipartFile file){
-		try {
+    public String importExcel(@RequestParam(value = "filetype",required = false) String filetype,MultipartFile file) throws Exception{
+//		try {
 		//XMLファイル読み込み	
 		Map<String,List<String>> xmlData = fileUploadService.xmlLoad(filetype,xmlname);
 		//excelファイル読み込み
 		Map<String,List<String>> excelData = fileUploadService.getExcelData(filetype,file,xmlData);
 		//テーブルを更新
 		fileUploadService.dataUpload(filetype,excelData);
-		}catch(Exception e) {
-			throw new MyException(e.getMessage());
-		}
+//		}catch(Exception e) {
+//			throw new MyException(e.getMessage());
+//		}
     	return "OK";
     }
 
