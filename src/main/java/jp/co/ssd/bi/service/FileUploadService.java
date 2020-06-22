@@ -373,7 +373,7 @@ public class FileUploadService {
 				//sql文生成
 				Map <String,String> sqlMap = getsql(tmpKey,tmpValue);
 				//テーブルを更新
-				throw new MyException("456");
+				throw new MyException(sqlMap.get(UploadCommonConst.DELETE));
 //				dbutil.queryUpdate(myconn, sqlMap.get(UploadCommonConst.DELETE));
 //				dbutil.queryUpdate(myconn, sqlMap.get(UploadCommonConst.INSERT));	
 		}	
