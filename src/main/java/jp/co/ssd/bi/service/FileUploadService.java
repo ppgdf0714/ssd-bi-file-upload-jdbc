@@ -374,7 +374,9 @@ public class FileUploadService {
 				Map <String,String> sqlMap = getsql(tmpKey,tmpValue);
 				//テーブルを更新
 				try{
-				dbutil.queryUpdate(myconn, sqlMap.get(UploadCommonConst.DELETE));}
+					dbutil.queryUpdate(myconn, "delete from 案件振り返り_テスト");
+				}
+				//dbutil.queryUpdate(myconn, sqlMap.get(UploadCommonConst.DELETE));}
 				catch (Exception e){
 					throw new MyException("666");
 				}
