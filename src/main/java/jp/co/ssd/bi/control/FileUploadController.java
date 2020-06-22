@@ -64,22 +64,7 @@ public class FileUploadController {
 		
 		
 		try {
-			Connection myconn = null;
-			try {
-				Class.forName("org.postgresql.Driver").newInstance();
-			} catch (InstantiationException e) {
-				// TODO Auto-generated catch block
-				throw new MyException("111");
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				throw new MyException("222");
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				throw new MyException("333");
-			}
-			myconn = DriverManager.getConnection("jdbc:postgresql://ssd-rds-postpresql.caunxszlefde.ap-northeast-1.rds.amazonaws.com:5432/ssdDatabase", "ssdmaster", "ssdpassword");
-			
-		//Connection myconn = dbutil.getConn();
+		Connection myconn = dbutil.getConn();
 		myconn.setAutoCommit(false);
 		PreparedStatement pStatement = null;
 	    pStatement = myconn.prepareStatement("delete from 案件振り返り_テスト");
