@@ -87,7 +87,7 @@ public class FileUploadController {
 		myconn.commit();}
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
-			throw new MyException(e.getMessage());
+			throw new MyException("444");
 		}
    	return "OK";
     }
