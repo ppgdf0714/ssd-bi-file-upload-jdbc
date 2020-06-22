@@ -3,6 +3,7 @@ package jp.co.ssd.bi.control;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -59,21 +60,35 @@ public class FileUploadController {
 //		}catch(Exception e) {
 //			throw new MyException(e.getMessage());
 //		}
-	    System.out.println("Hello, logs!");
-		throw new MyException("123");
-		//Connection myconn = null;
-//		try {
-//			Class.forName("org.postgresql.Driver").newInstance();
-//			myconn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "test", "test");
-//		//Connection myconn = dbutil.getConn();
-//		myconn.setAutoCommit(false);
-//		PreparedStatement pStatement = null;
-//	    pStatement = myconn.prepareStatement("delete from 案件振り返り_テスト");
-//	    pStatement.executeUpdate();
-//		myconn.commit();}
-//		catch(Exception e){
-//
-//		}
+
+		
+		
+		try {
+			Connection myconn = null;
+			try {
+				Class.forName("org.postgresql.Driver").newInstance();
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				throw new MyException("111");
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				throw new MyException("222");
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				throw new MyException("333");
+			}
+			myconn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "test", "test");
+		 
+		//Connection myconn = dbutil.getConn();
+		myconn.setAutoCommit(false);
+		PreparedStatement pStatement = null;
+	    pStatement = myconn.prepareStatement("delete from 案件振り返り_テスト");
+	    pStatement.executeUpdate();
+		myconn.commit();}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 //    	return "OK";
     }
 
