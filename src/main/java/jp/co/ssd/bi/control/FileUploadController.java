@@ -48,12 +48,13 @@ public class FileUploadController {
 		Map<String,List<String>> xmlData = fileUploadService.xmlLoad(filetype,xmlname);
 		//excelファイル読み込み
 		Map<String,List<String>> excelData = fileUploadService.getExcelData(filetype,file,xmlData);
+		throw new MyException(String.valueOf(excelData.size()));
 		//テーブルを更新
-		fileUploadService.dataUpload(filetype,excelData);
+		//fileUploadService.dataUpload(filetype,excelData);
 		}catch(Exception e) {
 			throw new MyException(e.getMessage());
 		}
-    	return "OK";
+    	//return "OK";
     }
 
 }
