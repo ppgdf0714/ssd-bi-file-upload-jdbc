@@ -84,13 +84,13 @@ public class FileUploadController {
 		PreparedStatement pStatement = null;
 	    pStatement = myconn.prepareStatement("delete from 案件振り返り_テスト");
 	    pStatement.executeUpdate();
-		myconn.commit();
-		throw new MyException("444");}
+		myconn.commit();}
+		//throw new MyException("444");}
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
-			throw new MyException("555");
+			throw new MyException("444");
 		}
-   	//return "OK";
+   	return "OK";
     }
 
 }
