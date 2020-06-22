@@ -47,7 +47,7 @@ public class FileUploadController {
      * @throws Exception
      */
 	@RequestMapping("/importExcel")
-    public String importExcel(@RequestParam(value = "filetype",required = false) String filetype,MultipartFile file) throws Exception{
+    public String importExcel(@RequestParam(value = "filetype",required = false) String filetype,MultipartFile file){
 //		try {
 //		//XMLファイル読み込み	
 //		Map<String,List<String>> xmlData = fileUploadService.xmlLoad(filetype,xmlname);
