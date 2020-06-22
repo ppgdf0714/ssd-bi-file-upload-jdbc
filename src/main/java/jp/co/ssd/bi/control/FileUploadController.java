@@ -1,6 +1,7 @@
 package jp.co.ssd.bi.control;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Map;
 
@@ -60,8 +61,9 @@ public class FileUploadController {
 		try {
 		Connection myconn = dbutil.getConn();
 		myconn.setAutoCommit(false);
-
-		dbutil.queryUpdate(myconn, "delete from 案件振り返り_指摘");
+		PreparedStatement pStatement = null;
+	    pStatement = myconn.prepareStatement("delete from 案件振り返り_テスト");
+	    pStatement.executeUpdate();
 		myconn.commit();}
 		catch(Exception e){
 			throw new MyException(e.getMessage());
