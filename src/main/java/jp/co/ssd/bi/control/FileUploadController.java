@@ -1,5 +1,6 @@
 package jp.co.ssd.bi.control;
 
+import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
 
@@ -12,13 +13,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import jp.co.ssd.bi.constant.UploadCommonConst;
 import jp.co.ssd.bi.model.MyException;
 import jp.co.ssd.bi.service.FileUploadService;
+import jp.co.ssd.bi.util.DBUtil;
 
 @Controller
 @Transactional
 public class FileUploadController {
-
+	@Autowired
+	DBUtil dbutil;
 	@Autowired
 	FileUploadService fileUploadService;
 	@Value("${jp.co.sdd.bi.xmlname}")
@@ -44,15 +48,24 @@ public class FileUploadController {
 	@RequestMapping("/importExcel")
     public String importExcel(@RequestParam(value = "filetype",required = false) String filetype,MultipartFile file) throws Exception{
 //		try {
-		//XMLファイル読み込み	
-		Map<String,List<String>> xmlData = fileUploadService.xmlLoad(filetype,xmlname);
-		//excelファイル読み込み
-		Map<String,List<String>> excelData = fileUploadService.getExcelData(filetype,file,xmlData);
-		//テーブルを更新
-		fileUploadService.dataUpload(filetype,excelData);
+//		//XMLファイル読み込み	
+//		Map<String,List<String>> xmlData = fileUploadService.xmlLoad(filetype,xmlname);
+//		//excelファイル読み込み
+//		Map<String,List<String>> excelData = fileUploadService.getExcelData(filetype,file,xmlData);
+//		//テーブルを更新
+//		fileUploadService.dataUpload(filetype,excelData);
 //		}catch(Exception e) {
 //			throw new MyException(e.getMessage());
 //		}
+		try {
+		Connection myconn = dbutil.getConn();
+		myconn.setAutoCommit(false);
+
+		dbutil.queryUpdate(myconn, "delete from 案件振り返り_指摘");
+		myconn.commit();}
+		catch(Exception e){
+			throw new MyException(e.getMessage());
+		}
     	return "OK";
     }
 
