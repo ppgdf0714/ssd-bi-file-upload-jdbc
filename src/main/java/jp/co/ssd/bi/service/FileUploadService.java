@@ -360,7 +360,7 @@ public class FileUploadService {
 	 * @return String cell情報
 	 * @throws SQLException 
 	 */	
-	public void dataUpload(String filetype,Map<String,List<String>> excelData) throws Exception {
+	public void dataUpload(String filetype,Map<String,List<String>> excelData){
 		Connection myconn = dbutil.getConn();
 		try{
 		myconn.setAutoCommit(false);	
@@ -377,8 +377,7 @@ public class FileUploadService {
 			}	
 		myconn.commit();
 		}catch (Exception e){
-				System.out.println("error:"+e.getMessage());
-				myconn.rollback();
+				//myconn.rollback();
 				throw new MyException("123");
 		}
 	}
