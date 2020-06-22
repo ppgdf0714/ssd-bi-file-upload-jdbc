@@ -362,36 +362,26 @@ public class FileUploadService {
 	 */	
 	public void dataUpload(String filetype,Map<String,List<String>> excelData){
 		Connection myconn = dbutil.getConn();
-		try{
-		myconn.setAutoCommit(false);}
-		catch (Exception e){
-			throw new MyException("123");
-		}
-		for(Map.Entry<String, List<String>> tmpData : excelData.entrySet()) {				
+		try{	
+			myconn.setAutoCommit(false);
+			for(Map.Entry<String, List<String>> tmpData : excelData.entrySet()) {				
 				String tmpKey = tmpData.getKey();
 				List<String> tmpValue = tmpData.getValue();
 				//sql文生成
 				Map <String,String> sqlMap = getsql(tmpKey,tmpValue);
 				//テーブルを更新
-				try{
-					dbutil.queryUpdate(myconn, "delete from 案件振り返り_テスト");
-					dbutil.queryUpdate(myconn, "insert into 案件振り返り_テスト(課名) values(2)");	
-					dbutil.queryUpdate(myconn, sqlMap.get(UploadCommonConst.DELETE));
-					dbutil.queryUpdate(myconn, sqlMap.get(UploadCommonConst.INSERT));	
-				}
-				catch (Exception e){
-					throw new MyException("666");
-				}
-		}	
-		try{
-		myconn.commit();}
-		catch (Exception e){
-			throw new MyException("789");
+				dbutil.queryUpdate(myconn, sqlMap.get(UploadCommonConst.DELETE));
+				dbutil.queryUpdate(myconn, sqlMap.get(UploadCommonConst.INSERT));	
+			}
+		}catch(Exception e) {
+			try{
+				myconn.commit();
+				}catch (Exception ex){
+				throw new MyException("789");
+			}
+			
 		}
-//		}catch (Exception e){
-//				//myconn.rollback();
-//			throw new MyException("456");
-//		}
+		
 	}
 	
 	/**
@@ -467,6 +457,5 @@ public class FileUploadService {
 	private static boolean isNumber(String str){
         String reg = "^[0-9]+(.[0-9]+)?$";
         return str.matches(reg);
-
     }
 }
