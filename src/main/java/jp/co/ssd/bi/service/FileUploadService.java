@@ -371,13 +371,15 @@ public class FileUploadService {
 				Map <String,String> sqlMap = getsql(tmpKey,tmpValue);
 				//テーブルを更新
 				dbutil.queryUpdate(myconn, sqlMap.get(UploadCommonConst.DELETE));
-				dbutil.queryUpdate(myconn, sqlMap.get(UploadCommonConst.INSERT));		
+				dbutil.queryUpdate(myconn, sqlMap.get(UploadCommonConst.INSERT));	
+				System.out.println(sqlMap.get(UploadCommonConst.DELETE));
+				System.out.println(sqlMap.get(UploadCommonConst.INSERT));
 			}	
 		myconn.commit();
 		}catch (Exception e){
-				throw new MyException("12345");
+				System.out.println("error:"+e.getMessage());
 				myconn.rollback();
-				throw new MyException(e.getMessage());
+				throw new MyException("123");
 		}
 	}
 	
