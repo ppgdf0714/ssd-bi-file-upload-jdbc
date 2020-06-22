@@ -59,20 +59,21 @@ public class FileUploadController {
 //		}catch(Exception e) {
 //			throw new MyException(e.getMessage());
 //		}
-		Connection myconn = null;
-		try {
-			Class.forName("org.postgresql.Driver").newInstance();
-			myconn = DriverManager.getConnection("jdbc:postgresql://ssd-rds-postpresql.caunxszlefde.ap-northeast-1.rds.amazonaws.com:5432/ssdDatabase", "ssdmaster", "ssdpassword");
-		//Connection myconn = dbutil.getConn();
-		myconn.setAutoCommit(false);
-		PreparedStatement pStatement = null;
-	    pStatement = myconn.prepareStatement("delete from 案件振り返り_テスト");
-	    pStatement.executeUpdate();
-		myconn.commit();}
-		catch(Exception e){
-			throw new MyException("123");
-		}
-    	return "OK";
+		throw new MyException("123");
+		//Connection myconn = null;
+//		try {
+//			Class.forName("org.postgresql.Driver").newInstance();
+//			myconn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "test", "test");
+//		//Connection myconn = dbutil.getConn();
+//		myconn.setAutoCommit(false);
+//		PreparedStatement pStatement = null;
+//	    pStatement = myconn.prepareStatement("delete from 案件振り返り_テスト");
+//	    pStatement.executeUpdate();
+//		myconn.commit();}
+//		catch(Exception e){
+//
+//		}
+//    	return "OK";
     }
 
 }
