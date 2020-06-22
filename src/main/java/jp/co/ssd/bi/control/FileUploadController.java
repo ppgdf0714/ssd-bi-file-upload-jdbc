@@ -78,13 +78,14 @@ public class FileUploadController {
 				throw new MyException("333");
 			}
 			myconn = DriverManager.getConnection("jdbc:postgresql://ssd-rds-postpresql.caunxszlefde.ap-northeast-1.rds.amazonaws.com:5432/ssdDatabase", "ssdmaster", "ssdpassword");
-			throw new MyException("444");}
+			
 		//Connection myconn = dbutil.getConn();
-//		myconn.setAutoCommit(false);
-//		PreparedStatement pStatement = null;
-//	    pStatement = myconn.prepareStatement("delete from 案件振り返り_テスト");
-//	    pStatement.executeUpdate();
-//		myconn.commit();}
+		myconn.setAutoCommit(false);
+		PreparedStatement pStatement = null;
+	    pStatement = myconn.prepareStatement("delete from 案件振り返り_テスト");
+	    pStatement.executeUpdate();
+		myconn.commit();
+		throw new MyException("444");}
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			throw new MyException("444");
