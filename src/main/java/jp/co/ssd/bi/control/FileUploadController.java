@@ -1,6 +1,7 @@
 package jp.co.ssd.bi.control;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Map;
@@ -58,8 +59,11 @@ public class FileUploadController {
 //		}catch(Exception e) {
 //			throw new MyException(e.getMessage());
 //		}
+		Connection myconn = null;
 		try {
-		Connection myconn = dbutil.getConn();
+			Class.forName("org.postgresql.Driver").newInstance();
+			myconn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "ssdmaster", "ssdpassword");
+		//Connection myconn = dbutil.getConn();
 		myconn.setAutoCommit(false);
 		PreparedStatement pStatement = null;
 	    pStatement = myconn.prepareStatement("delete from 案件振り返り_テスト");
