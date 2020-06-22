@@ -88,7 +88,7 @@ public class FileUploadController {
 		throw new MyException("444");}
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
-			throw new MyException("444");
+			throw new MyException("555");
 		}
    	//return "OK";
     }
