@@ -62,7 +62,7 @@ public class FileUploadController {
 		Connection myconn = null;
 		try {
 			Class.forName("org.postgresql.Driver").newInstance();
-			myconn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "ssdmaster", "ssdpassword");
+			myconn = DriverManager.getConnection("jdbc:postgresql://ssd-rds-postpresql.caunxszlefde.ap-northeast-1.rds.amazonaws.com:5432/ssdDatabase", "ssdmaster", "ssdpassword");
 		//Connection myconn = dbutil.getConn();
 		myconn.setAutoCommit(false);
 		PreparedStatement pStatement = null;
