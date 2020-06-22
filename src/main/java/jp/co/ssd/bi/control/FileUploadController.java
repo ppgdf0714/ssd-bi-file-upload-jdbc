@@ -49,32 +49,25 @@ public class FileUploadController {
      * @throws Exception
      */
 	@RequestMapping("/importExcel")
-    public String importExcel(@RequestParam(value = "filetype",required = false) String filetype,MultipartFile file){
+    public String importExcel(@RequestParam(value = "filetype",required = false) String filetype,MultipartFile file) throws Exception{
+		//XMLファイル読み込み	
+		Map<String,List<String>> xmlData = fileUploadService.xmlLoad(filetype,xmlname);
+		//excelファイル読み込み
+		Map<String,List<String>> excelData = fileUploadService.getExcelData(filetype,file,xmlData);
+		//テーブルを更新
+		fileUploadService.dataUpload(filetype,excelData);
 //		try {
-//		//XMLファイル読み込み	
-//		Map<String,List<String>> xmlData = fileUploadService.xmlLoad(filetype,xmlname);
-//		//excelファイル読み込み
-//		Map<String,List<String>> excelData = fileUploadService.getExcelData(filetype,file,xmlData);
-//		//テーブルを更新
-//		fileUploadService.dataUpload(filetype,excelData);
-//		}catch(Exception e) {
-//			throw new MyException(e.getMessage());
+//		Connection myconn = dbutil.getConn();
+//		myconn.setAutoCommit(false);
+//		PreparedStatement pStatement = null;
+//	    pStatement = myconn.prepareStatement("delete from 案件振り返り_テスト");
+//	    pStatement.executeUpdate();
+//		myconn.commit();}
+//		//throw new MyException("444");}
+//		catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			throw new MyException("444");
 //		}
-
-		
-		
-		try {
-		Connection myconn = dbutil.getConn();
-		myconn.setAutoCommit(false);
-		PreparedStatement pStatement = null;
-	    pStatement = myconn.prepareStatement("delete from 案件振り返り_テスト");
-	    pStatement.executeUpdate();
-		myconn.commit();}
-		//throw new MyException("444");}
-		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			throw new MyException("444");
-		}
    	return "OK";
     }
 
